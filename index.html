@@ -5,27 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="부경대 사회복지학 실무역량 홈페이지: 부산 날씨, 부산 이슈, 부경대 뉴스, 사회복지 통계 대시보드" />
   <title>부경대 사회복지학 실무역량</title>
+  <!-- Pink theme version for GitHub Pages -->
   <style>
     :root {
-      --navy: #071c2f;
-      --deep-blue: #0b2d4d;
-      --blue: #2d8cff;
-      --sky: #d9f3ff;
-      --mint: #31d0aa;
-      --aqua: #5ee7df;
-      --cream: #fff8ea;
-      --orange: #ffb45c;
-      --pink: #ff7aa2;
+      --navy: #4a0e2f;
+      --deep-blue: #9a1b62;
+      --blue: #ff5aa2;
+      --sky: #fff0f7;
+      --mint: #ffb6d2;
+      --aqua: #ffe0ec;
+      --cream: #fffafd;
+      --orange: #ffc1d8;
+      --pink: #ff3d8d;
       --white: #ffffff;
-      --text: #172033;
-      --muted: #657085;
-      --line: rgba(255, 255, 255, 0.22);
-      --shadow: 0 24px 70px rgba(3, 22, 44, 0.18);
+      --text: #321522;
+      --muted: #826171;
+      --line: rgba(255, 255, 255, 0.34);
+      --shadow: 0 24px 70px rgba(154, 27, 98, 0.18);
       --radius-xl: 30px;
       --radius-lg: 22px;
       --radius-md: 16px;
     }
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -41,9 +41,9 @@
       font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 14% 8%, rgba(94, 231, 223, 0.42), transparent 30%),
-        radial-gradient(circle at 92% 15%, rgba(45, 140, 255, 0.33), transparent 26%),
-        linear-gradient(135deg, #eef9ff 0%, #f8fbff 42%, #fff8ea 100%);
+        radial-gradient(circle at 14% 8%, rgba(255, 158, 196, 0.55), transparent 30%),
+        radial-gradient(circle at 92% 15%, rgba(233, 75, 139, 0.35), transparent 26%),
+        linear-gradient(135deg, #fff0f7 0%, #fff8fb 46%, #fff2f6 100%);
       overflow-x: hidden;
     }
 
@@ -62,8 +62,8 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(18px);
-      background: rgba(247, 251, 255, 0.78);
-      border-bottom: 1px solid rgba(7, 28, 47, 0.08);
+      background: rgba(255, 246, 251, 0.86);
+      border-bottom: 1px solid rgba(122, 31, 75, 0.09);
     }
 
     .nav {
@@ -90,8 +90,8 @@
       place-items: center;
       border-radius: 15px;
       color: var(--white);
-      background: linear-gradient(135deg, var(--blue), var(--mint));
-      box-shadow: 0 14px 34px rgba(45, 140, 255, 0.32);
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      box-shadow: 0 14px 34px rgba(233, 75, 139, 0.28);
     }
 
     .nav-links {
@@ -106,12 +106,12 @@
       border-radius: 999px;
       font-size: 14px;
       font-weight: 800;
-      color: #244057;
+      color: #8e315d;
       transition: 0.22s ease;
     }
 
     .nav-links a:hover {
-      background: rgba(45, 140, 255, 0.11);
+      background: rgba(233, 75, 139, 0.12);
       color: var(--deep-blue);
       transform: translateY(-1px);
     }
@@ -135,8 +135,8 @@
       padding: 42px;
       color: var(--white);
       background:
-        linear-gradient(135deg, rgba(7, 28, 47, 0.97), rgba(7, 55, 91, 0.96)),
-        radial-gradient(circle at 86% 18%, rgba(94, 231, 223, 0.95), transparent 24%);
+        linear-gradient(135deg, rgba(74, 14, 47, 0.98), rgba(154, 27, 98, 0.96)),
+        radial-gradient(circle at 86% 18%, rgba(255, 158, 196, 0.68), transparent 24%);
       box-shadow: var(--shadow);
       min-height: 420px;
     }
@@ -154,7 +154,7 @@
       height: 360px;
       right: -120px;
       top: -90px;
-      background: radial-gradient(circle, rgba(94, 231, 223, 0.55), transparent 62%);
+      background: radial-gradient(circle, rgba(255, 158, 196, 0.56), transparent 62%);
     }
 
     .hero-card::after {
@@ -162,7 +162,7 @@
       height: 270px;
       left: -80px;
       bottom: -110px;
-      background: radial-gradient(circle, rgba(255, 180, 92, 0.34), transparent 66%);
+      background: radial-gradient(circle, rgba(255, 209, 223, 0.46), transparent 66%);
     }
 
     .badge {
@@ -184,7 +184,7 @@
       height: 8px;
       border-radius: 50%;
       background: var(--mint);
-      box-shadow: 0 0 0 7px rgba(49, 208, 170, 0.16);
+      box-shadow: 0 0 0 7px rgba(255, 95, 158, 0.18);
     }
 
     .hero h1 {
@@ -235,7 +235,7 @@
     .btn-primary {
       color: var(--navy);
       background: linear-gradient(135deg, var(--aqua), var(--cream));
-      box-shadow: 0 16px 32px rgba(94, 231, 223, 0.26);
+      box-shadow: 0 16px 32px rgba(233, 75, 139, 0.22);
     }
 
     .btn-ghost {
@@ -262,7 +262,7 @@
       padding: 26px;
       background: rgba(255, 255, 255, 0.68);
       backdrop-filter: blur(20px);
-      box-shadow: 0 20px 50px rgba(7, 28, 47, 0.1);
+      box-shadow: 0 20px 50px rgba(122, 31, 75, 0.10);
     }
 
     .mini-card strong {
@@ -334,7 +334,7 @@
       min-height: 360px;
       color: var(--white);
       background:
-        linear-gradient(135deg, rgba(45, 140, 255, 0.92), rgba(49, 208, 170, 0.9)),
+        linear-gradient(135deg, rgba(233, 75, 139, 0.93), rgba(255, 158, 196, 0.92)),
         radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.4), transparent 30%);
       border-radius: var(--radius-xl);
       padding: 30px;
@@ -376,7 +376,7 @@
 
     .weather-icon {
       font-size: 62px;
-      filter: drop-shadow(0 14px 24px rgba(7, 28, 47, 0.18));
+      filter: drop-shadow(0 14px 24px rgba(122, 31, 75, 0.18));
     }
 
     .temperature {
@@ -440,11 +440,11 @@
     .content-card,
     .stat-card,
     .source-card {
-      border: 1px solid rgba(7, 28, 47, 0.08);
+      border: 1px solid rgba(122, 31, 75, 0.09);
       border-radius: var(--radius-lg);
       background: rgba(255, 255, 255, 0.74);
       backdrop-filter: blur(18px);
-      box-shadow: 0 20px 46px rgba(7, 28, 47, 0.08);
+      box-shadow: 0 20px 46px rgba(122, 31, 75, 0.08);
     }
 
     .forecast-card {
@@ -495,7 +495,7 @@
       justify-content: space-between;
       gap: 14px;
       padding: 22px 24px 18px;
-      border-bottom: 1px solid rgba(7, 28, 47, 0.08);
+      border-bottom: 1px solid rgba(122, 31, 75, 0.09);
     }
 
     .card-title {
@@ -515,8 +515,8 @@
       min-height: 30px;
       padding: 0 10px;
       border-radius: 999px;
-      color: #0b4f73;
-      background: rgba(94, 231, 223, 0.22);
+      color: #9b285c;
+      background: rgba(255, 158, 196, 0.22);
       font-size: 12px;
       font-weight: 900;
       white-space: nowrap;
@@ -532,15 +532,15 @@
       display: block;
       padding: 16px;
       border-radius: 17px;
-      background: rgba(248, 251, 255, 0.82);
-      border: 1px solid rgba(7, 28, 47, 0.06);
+      background: rgba(255, 247, 250, 0.84);
+      border: 1px solid rgba(122, 31, 75, 0.07);
       transition: 0.2s ease;
     }
 
     .news-item:hover {
       transform: translateY(-2px);
-      border-color: rgba(45, 140, 255, 0.22);
-      box-shadow: 0 14px 28px rgba(7, 28, 47, 0.08);
+      border-color: rgba(233, 75, 139, 0.24);
+      box-shadow: 0 14px 28px rgba(122, 31, 75, 0.08);
     }
 
     .news-item strong {
@@ -585,7 +585,7 @@
       right: -30px;
       top: -40px;
       border-radius: 999px;
-      background: linear-gradient(135deg, rgba(45, 140, 255, 0.18), rgba(49, 208, 170, 0.18));
+      background: linear-gradient(135deg, rgba(233, 75, 139, 0.18), rgba(255, 158, 196, 0.22));
     }
 
     .stat-icon {
@@ -595,7 +595,7 @@
       place-items: center;
       border-radius: 16px;
       font-size: 24px;
-      background: rgba(45, 140, 255, 0.1);
+      background: rgba(233, 75, 139, 0.10);
     }
 
     .stat-card h3 {
@@ -635,7 +635,7 @@
     .panel {
       border-radius: var(--radius-xl);
       padding: 26px;
-      background: rgba(7, 28, 47, 0.94);
+      background: rgba(74, 14, 47, 0.95);
       color: var(--white);
       box-shadow: var(--shadow);
       overflow: hidden;
@@ -650,7 +650,7 @@
       right: -90px;
       top: -80px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(94, 231, 223, 0.34), transparent 62%);
+      background: radial-gradient(circle, rgba(255, 158, 196, 0.36), transparent 62%);
     }
 
     .panel h3 {
@@ -711,10 +711,10 @@
       gap: 14px;
       padding: 13px 14px;
       border-radius: 16px;
-      background: rgba(247, 251, 255, 0.82);
+      background: rgba(255, 247, 250, 0.86);
       color: var(--deep-blue);
       font-weight: 900;
-      border: 1px solid rgba(7, 28, 47, 0.06);
+      border: 1px solid rgba(122, 31, 75, 0.07);
     }
 
     .source-links small {
@@ -736,7 +736,7 @@
       padding: 20px 22px;
       border-radius: 24px;
       background: rgba(255, 255, 255, 0.66);
-      border: 1px solid rgba(7, 28, 47, 0.08);
+      border: 1px solid rgba(122, 31, 75, 0.09);
     }
 
     .footer strong {
@@ -755,8 +755,8 @@
       border: 0;
       border-radius: 16px;
       color: var(--white);
-      background: linear-gradient(135deg, var(--blue), var(--mint));
-      box-shadow: 0 16px 30px rgba(45, 140, 255, 0.25);
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      box-shadow: 0 16px 30px rgba(233, 75, 139, 0.25);
       cursor: pointer;
     }
 
@@ -840,7 +840,7 @@
     <section class="hero">
       <div class="shell hero-grid">
         <div class="hero-card">
-          <div class="badge"><span class="pulse"></span> PKNU Social Welfare Practice Dashboard</div>
+          <div class="badge"><span class="pulse"></span> PKNU Pink Social Welfare Dashboard</div>
           <h1>부경대<br><span>사회복지학</span><br>실무역량</h1>
           <p>
             부산 지역의 날씨와 현안, 부경대 관련 소식, 사회복지 통계 자료를 한 화면에서 확인하는
@@ -856,7 +856,7 @@
           <div class="mini-card">
             <strong>지역을 읽는 힘</strong>
             <p>부산의 이슈와 날씨를 함께 보며 지역사회복지 현장 감각을 높입니다.</p>
-            <span class="big-icon">🌊</span>
+            <span class="big-icon">🌸</span>
           </div>
           <div class="mini-card">
             <strong>자료로 말하는 실무</strong>
