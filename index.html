@@ -6,1124 +6,740 @@
   <title>부경대 사회복지학 실무역량</title>
   <style>
     :root {
-      --bg: #f5f1f5;
-      --panel: #ffffff;
-      --panel-2: #fff7fb;
-      --line: #e7dce6;
-      --text: #24212a;
-      --muted: #7d7480;
-      --primary: #d84f91;
-      --primary-dark: #b93878;
-      --primary-soft: #ffe3f0;
-      --accent: #ff8ebf;
-      --blue: #2f6db3;
-      --shadow: 0 18px 45px rgba(70, 45, 65, 0.12);
-      --radius: 14px;
+      --bg: #fff5fa;
+      --window: rgba(255, 255, 255, 0.92);
+      --window-strong: #ffffff;
+      --line: #efc7d9;
+      --line-soft: #f7dcea;
+      --text: #261822;
+      --muted: #846779;
+      --pink: #e85d98;
+      --pink-dark: #a72863;
+      --pink-light: #ffd8ea;
+      --tab: #ffffff;
+      --blue: #1e67c9;
+      --green: #85d6a1;
+      --yellow: #ffc45e;
+      --shadow: 0 22px 60px rgba(181, 70, 124, 0.16);
+      --soft-shadow: 0 10px 26px rgba(181, 70, 124, 0.10);
+      --radius: 16px;
     }
 
     * { box-sizing: border-box; }
 
-    body {
+    html, body {
       margin: 0;
-      min-height: 100vh;
-      font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+      min-height: 100%;
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(255, 195, 222, 0.75), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(255, 232, 243, 0.8), transparent 35%),
-        var(--bg);
-      overflow: hidden;
+        radial-gradient(circle at 16% 6%, rgba(255, 200, 226, 0.95), transparent 28%),
+        radial-gradient(circle at 86% 14%, rgba(255, 222, 238, 0.95), transparent 28%),
+        linear-gradient(180deg, #fff9fd 0%, #fff1f8 48%, #fde8f2 100%);
     }
 
-    .desktop {
-      width: min(1200px, calc(100vw - 44px));
-      height: min(760px, calc(100vh - 42px));
-      margin: 21px auto;
-      display: grid;
-      grid-template-rows: 48px 50px 1fr;
-      gap: 10px;
+    body { overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    .app {
+      width: min(1120px, calc(100vw - 38px));
+      margin: 0 auto;
+      padding: 0 0 38px;
     }
 
     .topbar {
       display: grid;
-      grid-template-columns: 190px 1fr 130px;
+      grid-template-columns: 142px minmax(180px, 1fr) auto;
       align-items: center;
       gap: 12px;
-      background: rgba(255,255,255,0.86);
-      border: 1px solid var(--line);
-      border-radius: 0 0 13px 13px;
-      padding: 8px 18px;
-      box-shadow: 0 6px 20px rgba(89, 61, 83, 0.08);
-      backdrop-filter: blur(12px);
+      min-height: 70px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, .82);
+      border: 1px solid var(--line-soft);
+      border-top: 0;
+      border-radius: 0 0 18px 18px;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--soft-shadow);
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
 
     .brand {
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing: -0.06em;
+      white-space: nowrap;
+    }
+    .brand .blue { color: var(--blue); }
+    .brand .black { color: #241a21; }
+
+    .search {
+      height: 38px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      gap: 10px;
+      padding: 0 13px;
+      border: 1px solid #e9bed2;
+      border-radius: 9px;
+      background: rgba(255,255,255,.82);
+      color: var(--muted);
+    }
+    .search input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .right-info {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .small-profile {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 10px 6px 6px;
+      border: 1px solid #efbfd3;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fff, #fff1f8);
+      box-shadow: 0 10px 22px rgba(215, 87, 145, .12);
+    }
+    .small-profile img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px #f399bf;
+    }
+    .small-profile b {
+      display: block;
+      font-size: 11px;
+      color: var(--pink-dark);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+    .small-profile span {
+      display: block;
+      margin-top: 3px;
+      font-size: 10px;
+      color: var(--muted);
       white-space: nowrap;
     }
 
-    .brand .sw { color: #111827; }
-    .brand .research { color: var(--primary); }
-
-    .search-wrap {
-      position: relative;
-    }
-
-    .search-wrap::before {
-      content: "⌕";
-      position: absolute;
-      left: 13px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #9a8d98;
-      font-size: 17px;
-    }
-
-    .search {
-      width: 100%;
-      height: 32px;
-      border: 1px solid #d9cdd8;
-      border-radius: 7px;
-      background: #fbf9fc;
-      padding: 0 15px 0 38px;
-      outline: none;
-      color: #55505b;
-      box-shadow: inset 0 1px 1px rgba(0,0,0,0.02);
-    }
-
-    .search:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(216, 79, 145, 0.14);
-    }
-
-    .clock-box {
-      text-align: right;
-      line-height: 1.05;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-
     .clock {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 0.02em;
-      color: #14121a;
+      min-width: 92px;
+      text-align: right;
+      line-height: 1.06;
+      font-family: Consolas, "D2Coding", monospace;
     }
-
-    .date {
-      margin-top: 3px;
+    .clock strong {
+      display: block;
+      font-size: 25px;
+      letter-spacing: -0.08em;
+      color: #21151e;
+    }
+    .clock span {
+      display: block;
+      margin-top: 5px;
       font-size: 11px;
-      color: #9a7f8f;
+      color: #9c637f;
     }
 
     .tabs {
       display: flex;
-      gap: 9px;
       align-items: center;
-      padding-left: 0;
+      gap: 11px;
+      margin: 16px 0 18px;
+      flex-wrap: wrap;
     }
-
     .tab {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.72);
-      color: #6d6470;
-      border-radius: 8px;
-      height: 33px;
-      min-width: 78px;
-      padding: 0 18px;
+      min-width: 86px;
+      height: 39px;
+      border: 1px solid #e9c6d7;
+      border-radius: 9px;
+      background: var(--tab);
+      color: #5b4c56;
       cursor: pointer;
-      font-size: 14px;
-      transition: 0.18s ease;
-      box-shadow: 0 3px 10px rgba(90, 64, 82, 0.04);
+      box-shadow: 0 7px 16px rgba(146, 58, 101, .07);
+      transition: .18s ease;
     }
-
-    .tab:hover {
-      transform: translateY(-1px);
-      border-color: #f0abc9;
-      color: var(--primary-dark);
-    }
-
-    .tab.active {
-      background: var(--primary);
-      border-color: var(--primary);
+    .tab.active, .tab:hover {
+      border-color: transparent;
       color: #fff;
-      box-shadow: 0 8px 18px rgba(216, 79, 145, 0.28);
+      background: linear-gradient(135deg, #e75a97, #f580b0);
+      transform: translateY(-1px);
     }
 
-    .workspace {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,0.58);
-      border: 1px solid rgba(231, 220, 230, 0.95);
+    .window {
+      border: 1px solid var(--line-soft);
+      border-radius: 18px;
+      background: var(--window);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-    }
-
-    .app-window {
-      position: absolute;
-      inset: 0;
-      display: none;
-      flex-direction: column;
       overflow: hidden;
-      background: var(--panel);
+      min-height: 440px;
     }
 
-    .app-window.active { display: flex; }
-
-    .window-titlebar {
-      height: 45px;
-      display: grid;
-      grid-template-columns: 86px 1fr 170px;
+    .titlebar {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--line-soft);
+      background: linear-gradient(180deg, #fffafd 0%, #fff0f7 100%);
+    }
+    .title-left {
+      display: flex;
       align-items: center;
       gap: 10px;
-      padding: 0 20px;
-      border-bottom: 1px solid var(--line);
-      background: linear-gradient(180deg, #fff, #fff9fc);
+      min-width: 0;
     }
-
-    .traffic {
-      display: flex;
-      gap: 7px;
-      align-items: center;
+    .dots { display: flex; gap: 6px; flex: none; }
+    .dot { width: 11px; height: 11px; border-radius: 50%; background: #f36b9e; }
+    .dot:nth-child(2) { background: var(--yellow); }
+    .dot:nth-child(3) { background: var(--green); }
+    .titlebar h1 {
+      margin: 0;
+      font-size: 14px;
+      color: var(--pink-dark);
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-
-    .dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .dot.red { background: #ff6b9f; }
-    .dot.yellow { background: #ffcf73; }
-    .dot.green { background: #71d6b5; }
-
-    .window-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #6f6471;
-      letter-spacing: -0.02em;
-    }
-
-    .window-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 7px;
-    }
-
+    .title-actions { display: flex; gap: 8px; align-items: center; }
     .mini-btn {
-      height: 26px;
+      height: 28px;
       padding: 0 11px;
-      border: 1px solid #e3d7e2;
-      background: #fcf9fd;
-      color: #6a5e69;
-      border-radius: 6px;
+      border: 1px solid #e9c6d7;
+      border-radius: 8px;
+      background: #fff;
+      color: #65535f;
       font-size: 12px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       cursor: pointer;
     }
-
-    .mini-btn:hover {
-      border-color: #e889b7;
-      color: var(--primary-dark);
-      background: #fff4fa;
+    .mini-btn.hot {
+      border-color: transparent;
+      color: #fff;
+      background: var(--pink);
     }
 
-    .window-body {
-      flex: 1;
-      padding: 18px 20px 22px;
-      overflow: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #eab3ce #fff6fb;
-    }
+    .panel { display: none; padding: 24px 26px 28px; }
+    .panel.active { display: block; }
 
-    .window-body::-webkit-scrollbar { width: 10px; }
-    .window-body::-webkit-scrollbar-track { background: #fff6fb; }
-    .window-body::-webkit-scrollbar-thumb { background: #eab3ce; border-radius: 999px; border: 3px solid #fff6fb; }
-
-    .hero-grid {
+    .home-layout {
       display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap: 16px;
-      height: 100%;
-      min-height: 420px;
-    }
-
-    .hero-card, .content-card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #fff, #fff8fc);
-      border-radius: 13px;
-      padding: 18px;
-      box-shadow: 0 8px 24px rgba(93, 61, 86, 0.06);
-    }
-
-    .hero-card {
+      grid-template-columns: minmax(0, 1fr) 210px;
+      gap: 24px;
+      align-items: start;
       position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
-
-    .hero-card::after {
+    .home-layout::after {
       content: "";
       position: absolute;
-      width: 270px;
-      height: 270px;
-      right: -80px;
-      bottom: -95px;
+      width: 255px;
+      height: 255px;
+      right: -96px;
+      top: -94px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 142, 191, 0.32), transparent 68%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 11px;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    h1 {
-      margin: 18px 0 10px;
-      font-size: clamp(32px, 4vw, 54px);
-      line-height: 1.05;
-      letter-spacing: -0.07em;
-    }
-
-    .hero-sub {
-      margin: 0;
-      color: #6d6370;
-      font-size: 15px;
-      line-height: 1.8;
-      max-width: 570px;
-    }
-
-    .hero-footer {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .metric {
-      border: 1px solid #eadde7;
-      background: rgba(255,255,255,0.76);
-      border-radius: 12px;
-      padding: 13px;
-    }
-
-    .metric strong {
-      display: block;
-      color: var(--primary-dark);
-      font-size: 21px;
-      margin-bottom: 5px;
-    }
-
-    .metric span {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .list-title {
-      margin: 0 0 12px;
-      font-size: 15px;
-      color: #5d535e;
-      font-weight: 800;
-    }
-
-    .notice-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .notice {
-      display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 11px;
-      align-items: center;
-      padding: 12px;
-      border: 1px solid #eadde7;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.8);
-    }
-
-    .notice-icon {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 11px;
-      background: #fff0f7;
-      color: var(--primary-dark);
-      font-size: 20px;
-    }
-
-    .notice b {
-      display: block;
-      margin-bottom: 3px;
-      font-size: 13px;
-    }
-
-    .notice p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 13px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: 15px;
-      font-weight: 800;
-      color: #756a76;
-    }
-
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .pill {
-      border: 1px solid #e5d9e4;
-      background: #fcf9fd;
-      color: #635866;
-      border-radius: 7px;
-      height: 29px;
-      padding: 0 14px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .pill.active, .pill:hover {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-
-    .dash-grid {
-      display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap: 16px;
-    }
-
-    .weather-main {
-      display: grid;
-      grid-template-columns: 190px 1fr;
-      gap: 18px;
-      min-height: 210px;
-      align-items: stretch;
-    }
-
-    .temp-card {
-      border-radius: 16px;
-      padding: 18px;
-      color: #fff;
-      background: linear-gradient(145deg, #d84f91, #ff8ebf);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 18px 30px rgba(216,79,145,0.26);
-    }
-
-    .temp-card .city {
-      font-size: 13px;
-      opacity: 0.92;
-    }
-
-    .temp {
-      font-size: 52px;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      line-height: 1;
-    }
-
-    .weather-label { font-size: 14px; opacity: .92; }
-
-    .weather-details {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 11px;
-    }
-
-    .detail-box {
-      border: 1px solid #eadde7;
-      border-radius: 13px;
-      background: #fff;
-      padding: 14px;
-    }
-
-    .detail-box span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      margin-bottom: 7px;
-    }
-
-    .detail-box strong {
-      font-size: 22px;
-      color: #352e38;
-    }
-
-    .forecast {
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 9px;
-    }
-
-    .day {
-      border: 1px solid #eadde7;
-      border-radius: 12px;
-      background: #fff;
-      padding: 11px 9px;
-      text-align: center;
-    }
-
-    .day b { display: block; font-size: 12px; margin-bottom: 7px; color: #5f5561; }
-    .day span { color: var(--muted); font-size: 12px; }
-
-    .link-panel {
-      display: grid;
-      gap: 9px;
-    }
-
-    .link-btn {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      min-height: 40px;
-      padding: 11px 13px;
-      border: 1px solid #eadde7;
-      border-radius: 11px;
-      text-decoration: none;
-      color: #413943;
-      background: #fff;
-      font-size: 13px;
-      transition: 0.16s ease;
-    }
-
-    .link-btn:hover {
-      transform: translateY(-1px);
-      border-color: #ef9dc3;
-      box-shadow: 0 9px 20px rgba(216, 79, 145, 0.12);
-    }
-
-    .link-btn em {
-      color: var(--primary-dark);
-      font-style: normal;
-      font-weight: 900;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 13px;
-    }
-
-    .topic-card {
-      border: 1px solid #eadde7;
-      border-radius: 14px;
-      padding: 15px;
-      background: linear-gradient(180deg, #fff, #fff9fc);
-      min-height: 168px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      background: rgba(255, 211, 230, .9);
+      z-index: -1;
     }
 
     .tag {
       display: inline-flex;
-      width: fit-content;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: #fff0f7;
-      color: var(--primary-dark);
-      font-size: 11px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    .topic-card h3 {
-      margin: 0 0 8px;
-      font-size: 17px;
-      letter-spacing: -0.04em;
-    }
-
-    .topic-card p {
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.65;
-    }
-
-    .topic-card a {
-      color: var(--primary-dark);
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 13px;
-    }
-
-    .news-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .news-item {
-      display: grid;
-      grid-template-columns: 96px 1fr auto;
-      gap: 12px;
       align-items: center;
-      padding: 13px;
-      border: 1px solid #eadde7;
-      border-radius: 13px;
-      background: #fff;
-    }
-
-    .news-badge {
-      width: 96px;
-      height: 60px;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, #ffe3f0, #fff7fb);
-      color: var(--primary-dark);
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid #efbfd3;
+      background: #fff5fa;
+      color: var(--pink-dark);
+      font-size: 12px;
       font-weight: 900;
-      font-size: 13px;
+      letter-spacing: -0.03em;
     }
-
-    .news-item h3 {
-      margin: 0 0 5px;
+    .headline {
+      margin: 18px 0 12px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: .98;
+      letter-spacing: -0.09em;
+      color: #261822;
+    }
+    .headline em {
+      color: var(--pink);
+      font-style: normal;
+    }
+    .lead {
+      max-width: 650px;
+      margin: 0;
+      color: #6f5766;
       font-size: 15px;
+      line-height: 1.76;
+      letter-spacing: -0.035em;
     }
 
-    .news-item p {
+    .profile-card {
+      width: 100%;
+      padding: 16px 14px 15px;
+      border: 1px solid #efbfd3;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #fff3f9);
+      box-shadow: 0 18px 36px rgba(206, 78, 136, .14);
+      text-align: center;
+    }
+    .profile-card img {
+      width: 94px;
+      height: 94px;
+      border-radius: 26px;
+      object-fit: cover;
+      border: 5px solid #fff;
+      box-shadow: 0 0 0 1px #efb5cd, 0 12px 26px rgba(172, 68, 114, .17);
+    }
+    .profile-card b {
+      display: block;
+      margin-top: 11px;
+      font-size: 14px;
+      letter-spacing: -0.04em;
+      color: #2a1c25;
+    }
+    .profile-card span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: -0.03em;
+    }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 11px;
+      margin-top: 25px;
+    }
+    .quick-card {
+      min-height: 92px;
+      padding: 13px 12px;
+      border: 1px solid #f0d1df;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .78);
+      cursor: pointer;
+      transition: .18s ease;
+    }
+    .quick-card:hover {
+      transform: translateY(-3px);
+      border-color: #f18ab7;
+      box-shadow: 0 14px 24px rgba(194, 72, 126, .12);
+    }
+    .quick-card strong {
+      display: block;
+      color: var(--pink);
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing: -0.06em;
+    }
+    .quick-card span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      letter-spacing: -0.03em;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card {
+      border: 1px solid #f0d1df;
+      border-radius: 15px;
+      background: linear-gradient(180deg, #fff, #fff8fc);
+      padding: 16px;
+      min-height: 116px;
+      box-shadow: 0 9px 18px rgba(181, 70, 124, .06);
+      transition: .18s ease;
+    }
+    a.card:hover {
+      transform: translateY(-3px);
+      border-color: #f18ab7;
+      box-shadow: 0 14px 24px rgba(194, 72, 126, .12);
+    }
+    .card small {
+      display: inline-flex;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #ffe0ee;
+      color: var(--pink-dark);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .card h2 {
+      margin: 11px 0 7px;
+      font-size: 17px;
+      letter-spacing: -0.055em;
+      color: #2c1d27;
+    }
+    .card p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.55;
       font-size: 13px;
+      line-height: 1.56;
+      letter-spacing: -0.03em;
     }
 
-    .open-link {
-      border: 1px solid #e5d9e4;
-      border-radius: 7px;
-      padding: 8px 10px;
-      color: var(--primary-dark);
-      background: #fff8fc;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .stat-grid {
+    .weather-box {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 15px;
+      grid-template-columns: 1fr 132px;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+      padding: 18px;
+      border: 1px solid #f0d1df;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #fff, #fff2f8);
     }
-
-    .stat-box {
-      border: 1px solid #eadde7;
-      border-radius: 14px;
-      background: #fff;
-      padding: 15px;
+    .weather-temp {
+      font-size: 54px;
+      font-weight: 950;
+      letter-spacing: -0.09em;
+      color: var(--pink);
     }
-
-    .stat-box small {
-      display: block;
-      color: var(--muted);
-      margin-bottom: 10px;
-      font-size: 12px;
+    .weather-desc {
+      margin-top: 4px;
+      color: #705867;
+      font-size: 14px;
+      line-height: 1.65;
+      letter-spacing: -0.03em;
     }
-
-    .stat-box strong {
-      display: block;
-      color: var(--primary-dark);
-      font-size: 26px;
-      letter-spacing: -0.05em;
-    }
-
-    .stat-box span {
-      color: #8d818d;
-      font-size: 12px;
-    }
-
-    .table-wrap {
-      border: 1px solid #eadde7;
-      border-radius: 14px;
-      background: #fff;
-      overflow: hidden;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-
-    th, td {
-      padding: 13px 14px;
-      border-bottom: 1px solid #f0e6ee;
-      text-align: left;
-    }
-
-    th {
-      background: #fff5fa;
-      color: #6c5e6c;
-      font-weight: 900;
-    }
-
-    tr:last-child td { border-bottom: 0; }
-
-    .status {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .footer-dock {
-      position: absolute;
-      left: 50%;
-      bottom: 14px;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      padding: 8px;
-      border: 1px solid rgba(234, 221, 231, .95);
-      background: rgba(255,255,255,.72);
-      backdrop-filter: blur(12px);
-      border-radius: 16px;
-      box-shadow: 0 12px 28px rgba(70, 45, 65, 0.13);
-      z-index: 10;
-    }
-
-    .dock-btn {
-      width: 42px;
-      height: 42px;
-      border: 0;
-      border-radius: 13px;
+    .weather-icon {
+      width: 105px;
+      height: 105px;
+      justify-self: end;
       display: grid;
       place-items: center;
+      border-radius: 30px;
+      background: #ffe0ee;
+      font-size: 46px;
+      box-shadow: inset 0 -8px 16px rgba(228, 86, 147, .12);
+    }
+    .city-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 15px; }
+    .city {
+      height: 34px;
+      padding: 0 16px;
+      border: 1px solid #ecc5d6;
+      border-radius: 9px;
       background: #fff;
-      box-shadow: inset 0 0 0 1px #eadde7;
+      color: #584851;
       cursor: pointer;
-      font-size: 19px;
+    }
+    .city.active { background: var(--pink); border-color: var(--pink); color: white; }
+
+    .notice {
+      margin-top: 16px;
+      padding: 13px 14px;
+      border: 1px dashed #efaccb;
+      border-radius: 13px;
+      background: #fff7fb;
+      color: #765c6d;
+      font-size: 12px;
+      line-height: 1.6;
+      letter-spacing: -0.03em;
     }
 
-    .dock-btn.active {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 8px 18px rgba(216,79,145,.28);
+    .list { display: grid; gap: 10px; }
+    .link-item {
+      display: block;
+      padding: 15px 16px;
+      border: 1px solid #f0d1df;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .80);
+      transition: .18s ease;
+    }
+    .link-item:hover {
+      transform: translateY(-2px);
+      border-color: #f18ab7;
+      background: #fff;
+      box-shadow: 0 12px 20px rgba(194, 72, 126, .10);
+    }
+    .link-item b {
+      display: block;
+      color: #2c1d27;
+      font-size: 15px;
+      letter-spacing: -0.045em;
+    }
+    .link-item span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      letter-spacing: -0.03em;
     }
 
-    @media (max-width: 900px) {
-      body { overflow: auto; }
-      .desktop {
-        width: calc(100vw - 22px);
-        height: auto;
-        min-height: 100vh;
-        margin: 11px auto;
-        grid-template-rows: auto auto auto;
-      }
+    .footer-note {
+      margin: 12px 2px 0;
+      color: #9a6f85;
+      font-size: 11px;
+      text-align: right;
+      letter-spacing: -0.02em;
+    }
+
+    @media (max-width: 840px) {
+      .app { width: min(100% - 28px, 760px); }
       .topbar {
-        grid-template-columns: 1fr;
-        border-radius: 13px;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        padding: 12px;
       }
-      .clock-box { text-align: left; }
-      .tabs { overflow-x: auto; padding-bottom: 3px; }
-      .workspace { min-height: 760px; }
-      .app-window { position: relative; display: none; min-height: 760px; }
-      .app-window.active { display: flex; }
-      .window-titlebar { grid-template-columns: 70px 1fr; }
-      .window-actions { display: none; }
-      .hero-grid, .dash-grid, .weather-main { grid-template-columns: 1fr; }
-      .cards-grid, .stat-grid { grid-template-columns: 1fr; }
-      .forecast { grid-template-columns: repeat(2, 1fr); }
-      .news-item { grid-template-columns: 1fr; }
-      .news-badge { width: 100%; }
-      .footer-dock { position: sticky; transform: none; left: auto; bottom: 8px; margin: 12px auto; width: max-content; }
+      .search { grid-column: 1 / -1; order: 3; }
+      .small-profile { display: none; }
+      .home-layout { grid-template-columns: 1fr; }
+      .profile-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-align: left;
+        padding: 12px;
+        max-width: 320px;
+      }
+      .profile-card img { width: 68px; height: 68px; border-radius: 20px; }
+      .quick { grid-template-columns: repeat(2, 1fr); }
+      .grid-2 { grid-template-columns: 1fr; }
+      .window { min-height: auto; }
+      .panel { padding: 18px; }
+    }
+
+    @media (max-width: 520px) {
+      .brand { font-size: 18px; }
+      .clock strong { font-size: 21px; }
+      .tabs { gap: 8px; }
+      .tab { min-width: 0; flex: 1 1 30%; }
+      .title-actions { display: none; }
+      .headline { font-size: 36px; }
+      .quick { grid-template-columns: 1fr; }
+      .weather-box { grid-template-columns: 1fr; }
+      .weather-icon { justify-self: start; width: 80px; height: 80px; font-size: 38px; }
     }
   </style>
 </head>
 <body>
-  <main class="desktop">
+  <div class="app">
     <header class="topbar">
-      <div class="brand" aria-label="홈페이지 로고">
-        <span class="sw">PKNU</span><span class="research">SWResearch</span>
-      </div>
-      <div class="search-wrap">
-        <input id="searchInput" class="search" type="text" placeholder="Google Scholar 논문 검색 (Enter)..." />
-      </div>
-      <div class="clock-box">
-        <div id="clock" class="clock">00:00:00</div>
-        <div id="date" class="date">0000년 00월 00일</div>
+      <a class="brand" href="#"><span class="blue">SW</span><span class="black">Research</span></a>
+
+      <form class="search" id="scholarForm">
+        <span>⌕</span>
+        <input id="scholarInput" type="search" placeholder="Google Scholar 논문 검색 (Enter)..." autocomplete="off" />
+      </form>
+
+      <div class="right-info">
+        <div class="small-profile">
+          <img src="data:image/webp;base64,UklGRuQLAABXRUJQVlA4INgLAACQOwCdASq0ALQAPnk6mUgko6KhJlW7GJAPCWVu4XKQ79DcImfQL7xF9r0e7cTndPRrvO8rH8qvEuGd9of4v9u5D+AF7H3+K7Tw39by9U48bzP2APzB6NOid6b/Zb4D/1y32wwtbO+RXevXLffIC/ddt3nRzbuCDb1OIRPnSWNKGhLk9Fw/PYInJF5NxI5l07qlD1wQOsAXjCdofcS1EArqSPWCT0SzPJ/m8JnJmFiEHVyqNVA4Mq3wRhfLIdHteg/SKhMhGOOGjpQMc1QxGajwpP/Uqm1UXFFmm+P2bIf8sYoMHSy4lY4xrzFzhjoTXe3gDIoAm8CWcfOyLDhthRZFDhGiRiR0TxXxn9Bwx305R3lBbTkSWaZZQF4SvLGszyV0cQI3GNkt0zd3HkWHAq1Fj8nOgdEo98icGV3ZI3leU/YDc2bh9lJ14Np8AAm6++4/vj0A8Qdx+RcGc3G5TVBk1/dT1j1/h2NHOpPasmv8bTmje7BEbNISlfPelFLkqFKuW+Msgtm03TbmCIOIZiepoQ9wqSrVePJS/6xHutUv57oq/1Uz5S8/x7dBBdJRKm8wk6jHovWnk6iKPJ9z606xwOigmsdNZGE561OjGWML+xk5mB1wW5lAoHAMPsJkgtvjtuCcAAD+/2CAyWS/etMYt95zWqly1PgOL9C8/vloLce3TK4pFmVMmTGge8+ZgDItEVJhAWVKH5TFg63knd6zEAKkpyjlLGM/3tpDba3R7f2uNxsW/rkvCyf7ovoIf4794DTlxVCiLKUfAoEZZ/rSJpeWid5LeXucr23r630YHWqMi+586MZU+AQcgLoXxGYDBQt8aeFwP193iQMwFaq5BavLy0X43gMSgsSr2ZQ+zlrjG2r1mWbtMI69ddRky74H90Zm5RM6hYOQr7yZmsUMaJ6+Ff8Y9jMdl/JvbexpyedsH7i/358ad3flj8kjdaO+B5PC8LFXWpc2pyHcyUhFeX3e79G2/aeN4zmHOKd/rozy+o424K8Tycq0DHCvjkfPXut3xkLr9GqRC31Qm9/DxfJhmzLQdEmox6OMo/joejR4rR3WanS/HgFfOYJPPfzjYyuFYyplD2h6ROlBJYFMJQMnlAAgzFfUA8CzDdwupyKCkdFrzcG+bGm7nq8PmkbKk57bb42UL7hXGZzPPs1siWOmzfkQ1bbTslEOxlOVfwtiodHxQ000ieqJwFyZeVKC4QBr+hRvE64RIwMpRP2CJeSOytRcjmMlzciXMrxWkiWt2O+NJKTmxqBvN/rGGU01DnKVluM+P/0xzXIfJxhC6HAcYy6ka8GzWYux9QOOykv0nphO7hObOLF5yVspPZc0ZGOlT6/0Fbda9i/KADm8036XNZmtqlvb6AE+JrGY19R6TQK0zCGer3k5SkIoWcq+pFEyO4XkReCeQgzQdFQTtZ3Sk9TIO+Gx/wEY4xVnkExyTiky01vOR5lGtjh5JPofCocPRHkajSrhJAjqbYRfybt8DGttUA06dZ+bzav55hKh7HYy9t58Nv9CXBGPuQo189OyQoI2zg3g5MmN6bNS5Sw/x1t4ep5dPkH1IZwgezQTXRg2qZkq4Eegw8Ym4wHbk2cc3xDrJbyToWloVDk/83LVFL6WlAvMjKOC7Q+Rap1XRTmPTvM1MWFa6XbRQxClqls2lZBRC1EbbC+NVikYqbCAo4gqWy/q0VgEbE9uH4ErgAIe+2wLduw2lU11bMGYl/SGv3/6WPPTXfiG/TiNCj0kyDIHG8celM1H7kvKYsHfZzrJNIH9lWm/niCBV1rhdBlYQRUuAbER0JqobLgZUTkLXPd0R6HyBUGfKISZVznW4cEgvP6kIIZ7oLun0IJUAReS5t9c9kEo0wnJft20En3W3c2OVpYCKoYuTByZl9pfR+1PfU+9Tik6vH9nhh1dOVCkDCszJ0uuWYA7G9hks05I4cxeEVSHy2IpZHS5+kceCjtVmtUDg1ZSxeqOYR5jCMWHNgc85tXBArbfzW4denKgY5VZgWNJBbx7X77Md92/IA1NnbWz4Ls/QAWVQ3vfyjSgrH7eYndNSAv3hcYdcVkAbZ6YNVHe/MBMEZD8Ebd10Z4igy3lHum/eW0gfmwtu0Va+EAZBolzGb2QaY/HasEaywD5hqJnio5FAp4QVW6DiNFlsDb6WE/WOI/M2VqV/c+XmJOG1ueqkA8V4eqlhOZjunAmbvfHuzlFnE4LtZ4Zlf8WPF3BTzY/3R9QwlLSST/2dexKx1weBO6Jc1PM8YgHKbtP72DkZF/Ho2kN5zq/lTj8huwHxj66/EofeCo9IRib7YCUOCdmDP6g0E05+IXtUEYRvEmFpUtBaRdyQfS8xfUr8X5WuDvbMAJ7jfg+x+j0DwOV4G/W5F7vlLLfSujRdb92EcUOVld1vfQQW75I94NBSgZsmNbKOuM2J+5NpSHw7qhSuTRiHDJPjkGzQzuSy0vEAwsBOkSponfQ/fzn0cG7oe4hRzG937G86iHHmhEZasutj0CaOJPlaq9zr322S9s7mreXHyajTvGDeImtCW13t/FU+hYsdtGZUtqXKaYamgA0BEtuNDfsoZdnuYPN5FvgJZ7dSbyy4hjJQTkeOaptienOYaJJN9cxVED/I6RUs0iNvCaR0Zb/YeP/L4YeVrbfQW1FaKlvdwoQ3hFHDwWKDpv/mPH5fuejVjjXqbf+v3WfwkRzWL62VX9OHD54RzJ8qFpwu/TMt947VrUDmjtRE2OpCURIPJd/mmHuKcYmg7wtl84HXaeEmdyT8l7cQsBm5PW7bzV3V5Kc0gqAB9LXVcO1canoRnEXrJXrn9WbVkTDxEyM4V7Rr5sAuHHrLg9CtA2kW5WsdjLPoqOA8RwhtyH8/BOAysKOpwY10X/JzSBnM41k74qiwwT3A29XTWrUhlNHQv263B0q6WGOulnz5bJdQ60hWKbFzMnx2dMFHxJEk0TIkmalUdOoAgd2DWkxbwPe7XWGfLfUIHE92CwGgBCwvljmnHwJ9PRju0t59TCoa5Eo4349RNIqYh1hjbFVL4VeiMXoxoFKmjMqX2kmIuKhzshYk4Og47xhcVg3UmdENWJPs+3TLdw9DqPcgNgMT7tYzrdukRQKQGqJ/spHL56l1x+L+4aCO9iK2RDP+wsWcOQH2vTq0w413bOZ+zg8Hhyi9wwX8xX7JUEn4oWKt5GwVIbPSHeUKuRGJsus6ahfbxi367latWRIT9aMhmA7/K0z4ceF4Uvn5KltDgPJwqCvIVQm1x+kbg6w5q/qzG88qICMtb9+gAzto+33JR4fEr/s2w+L6Z/3jFHTfEayvLFtzIeo0CQIabR2VIldY+BkO9dll7q5+e2xt3jJZRqmlGSStXf2I7nPkEwCGl+GONVuu1Gnn81YPe/mn5oU9euWPQjbLmitCRKG/BYOhz8h4BdZUii0bS+vrR8aSJ6RscdUAXu5Qz9ogGKOhUQuviQ9BqiRjOfePq/CaZYB9lhqnXosChpvlubx6ubkjTzuobK5PJ/UdNnxGjMaWIdlAMcRxgNuXATaWy6wbrSRHVPcr7Ljv+37d69cUDpa8OA7+WCjYeBdttVGwr8yy955W1NIepvYOZFoBnt3gehKK9jBG19CgOgf7Nco/QW0oOrX72qIXCun/CNVtgors5QOPEFAyd2xaJI05rJKMHVDaH49cz1su184fNsts1g/TkOA1lMRcwRuJdAsIML+xHIBpNBwkSj5aUOeKFEvxHQsNx5eGsIr1cUu7t5Gac8+c9ZSIm/kXnYTG9KFE7TkRFOsU9Jyc4jzeGUB2Czd8BSbQx+r9N4a2hup+dc5VXr0lfvTJeBhXbJh0T6UoHzH4sRllQWNgdpCjJE8zGWdVUYE9xJiQBT+q7bcPqLz0jYD1aItSByH812/GRxceDWLNA/gfr0vF5nnptaOoWmSNO8nJMPyaWiFrEP7b4ulclImiaH24yqqNsMqApG6SHScVoD8Ey5y2kfnqni6VglHrkWXffkGRb7KyNvY/6EL+copO0mbkytUdDU7QxqAkmnxZXSohsYAAA==" alt="프로필 이미지" />
+          <div>
+            <b>사회복지학</b>
+            <span>실무역량 포트폴리오</span>
+          </div>
+        </div>
+        <div class="clock">
+          <strong id="clockTime">--:--:--</strong>
+          <span id="clockDate">----년 --월 --일</span>
+        </div>
       </div>
     </header>
 
-    <nav class="tabs" aria-label="메뉴 탭">
-      <button class="tab active" data-target="home">홈</button>
-      <button class="tab" data-target="weather">날씨</button>
-      <button class="tab" data-target="busan">부산 이슈</button>
-      <button class="tab" data-target="pknu">부경대 뉴스</button>
-      <button class="tab" data-target="welfare">복지 데이터</button>
+    <nav class="tabs">
+      <button class="tab active" data-panel="home">홈</button>
+      <button class="tab" data-panel="weather">날씨</button>
+      <button class="tab" data-panel="busan">부산 이슈</button>
+      <button class="tab" data-panel="pknu">부경대 뉴스</button>
+      <button class="tab" data-panel="welfare">복지 통계</button>
     </nav>
 
-    <section class="workspace">
-      <article id="home" class="app-window active">
-        <div class="window-titlebar">
-          <div class="traffic"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-          <div class="window-title">홈 대시보드 — 부경대 사회복지학 실무역량</div>
-          <div class="window-actions">
-            <a class="mini-btn" href="https://www.pknu.ac.kr" target="_blank" rel="noopener">부경대</a>
-            <a class="mini-btn" href="https://www.kosis.kr" target="_blank" rel="noopener">KOSIS</a>
-          </div>
+    <main class="window">
+      <div class="titlebar">
+        <div class="title-left">
+          <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <h1 id="windowTitle">main.exe — 부경대 사회복지학 실무역량</h1>
         </div>
-        <div class="window-body">
-          <div class="hero-grid">
-            <section class="hero-card">
-              <div>
-                <span class="eyebrow">Social Welfare Practice Dashboard</span>
-                <h1>부경대<br />사회복지학<br />실무역량</h1>
-                <p class="hero-sub">
-                  부산의 날씨, 지역 이슈, 부경대학교 관련 소식, 사회복지 통계를 한 화면에서 빠르게 확인하는 창 형식 홈페이지입니다.
-                  상단 탭을 눌러 각 자료 창으로 이동할 수 있습니다.
-                </p>
-              </div>
-              <div class="hero-footer">
-                <div class="metric"><strong>01</strong><span>부산 날씨 확인</span></div>
-                <div class="metric"><strong>02</strong><span>지역 이슈 탐색</span></div>
-                <div class="metric"><strong>03</strong><span>복지통계 바로가기</span></div>
-              </div>
-            </section>
-
-            <aside class="content-card">
-              <h2 class="list-title">오늘 확인할 자료 창</h2>
-              <div class="notice-list">
-                <div class="notice"><div class="notice-icon">☁</div><div><b>날씨 정보</b><p>부산 기준 실시간 날씨와 간단 예보를 제공합니다.</p></div></div>
-                <div class="notice"><div class="notice-icon">🏙</div><div><b>부산의 이슈</b><p>청년, 고령화, 복지, 지역사회 키워드 중심으로 최신 검색을 연결합니다.</p></div></div>
-                <div class="notice"><div class="notice-icon">🎓</div><div><b>부경대 관련 뉴스</b><p>부경대 공식 홈페이지와 관련 뉴스 검색으로 이동합니다.</p></div></div>
-                <div class="notice"><div class="notice-icon">📊</div><div><b>사회복지 통계</b><p>KOSIS, e-나라지표, 복지로 등 주요 통계 자료를 모았습니다.</p></div></div>
-              </div>
-            </aside>
-          </div>
+        <div class="title-actions">
+          <button class="mini-btn hot" data-panel="home">Home</button>
+          <button class="mini-btn" onclick="window.open('https://scholar.google.com/scholar?q=%EC%82%AC%ED%9A%8C%EB%B3%B5%EC%A7%80+%EC%8B%A4%EB%AC%B4%EC%97%AD%EB%9F%89','_blank')">Scholar</button>
         </div>
-      </article>
-
-      <article id="weather" class="app-window">
-        <div class="window-titlebar">
-          <div class="traffic"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-          <div class="window-title">날씨 정보 — 부산 · 대구 · 서울</div>
-          <div class="window-actions">
-            <a class="mini-btn" href="https://www.weather.go.kr" target="_blank" rel="noopener">기상청 →</a>
-            <a class="mini-btn" href="https://www.accuweather.com/ko/kr/busan/222888/weather-forecast/222888" target="_blank" rel="noopener">AccuWeather →</a>
-          </div>
-        </div>
-        <div class="window-body">
-          <div class="section-head">
-            <h2>날씨 정보 — 도시 선택</h2>
-            <div class="btn-row">
-              <button class="pill active" data-city="busan">부산</button>
-              <button class="pill" data-city="daegu">대구</button>
-              <button class="pill" data-city="seoul">서울</button>
-            </div>
-          </div>
-
-          <div class="dash-grid">
-            <section class="content-card">
-              <div class="weather-main">
-                <div class="temp-card">
-                  <div>
-                    <div id="weatherCity" class="city">부산광역시</div>
-                    <div id="weatherTemp" class="temp">--°</div>
-                  </div>
-                  <div id="weatherDesc" class="weather-label">날씨 정보를 불러오는 중</div>
-                </div>
-                <div class="weather-details">
-                  <div class="detail-box"><span>체감온도</span><strong id="feelsLike">--°</strong></div>
-                  <div class="detail-box"><span>습도</span><strong id="humidity">--%</strong></div>
-                  <div class="detail-box"><span>강수량</span><strong id="rain">--mm</strong></div>
-                  <div class="detail-box"><span>풍속</span><strong id="wind">--km/h</strong></div>
-                </div>
-              </div>
-              <div id="forecast" class="forecast"></div>
-              <p id="weatherStatus" class="status">Open-Meteo API를 사용해 날씨 데이터를 불러옵니다. 연결이 제한되면 대체 문구가 표시됩니다.</p>
-            </section>
-
-            <aside class="content-card">
-              <h2 class="list-title">날씨 바로가기</h2>
-              <div class="link-panel">
-                <a class="link-btn" href="https://www.accuweather.com/ko/kr/busan/222888/weather-forecast/222888" target="_blank" rel="noopener">AccuWeather 부산 <em>→</em></a>
-                <a class="link-btn" href="https://www.accuweather.com/ko/kr/seoul/226081/weather-forecast/226081" target="_blank" rel="noopener">AccuWeather 서울 <em>→</em></a>
-                <a class="link-btn" href="https://www.weather.go.kr/w/index.do" target="_blank" rel="noopener">기상청 날씨누리 <em>→</em></a>
-                <a class="link-btn" href="https://www.airkorea.or.kr" target="_blank" rel="noopener">AirKorea 미세먼지 <em>→</em></a>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </article>
-
-      <article id="busan" class="app-window">
-        <div class="window-titlebar">
-          <div class="traffic"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-          <div class="window-title">부산의 이슈 — 지역사회 · 청년 · 복지</div>
-          <div class="window-actions">
-            <a class="mini-btn" href="https://www.busan.go.kr/news" target="_blank" rel="noopener">부산시 뉴스</a>
-            <a class="mini-btn" href="https://www.busan.go.kr/nbnews" target="_blank" rel="noopener">공지사항</a>
-          </div>
-        </div>
-        <div class="window-body">
-          <div class="section-head">
-            <h2>부산 이슈 검색 창</h2>
-            <div class="btn-row">
-              <a class="mini-btn" href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EC%82%B0%20%EC%82%AC%ED%9A%8C%EB%B3%B5%EC%A7%80" target="_blank" rel="noopener">부산 복지 뉴스</a>
-              <a class="mini-btn" href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EC%82%B0%20%EC%B2%AD%EB%85%84%20%EC%9D%B4%EC%8A%88" target="_blank" rel="noopener">부산 청년 뉴스</a>
-            </div>
-          </div>
-          <div class="cards-grid">
-            <div class="topic-card"><div><span class="tag">지역복지</span><h3>부산 사회복지 정책</h3><p>지역사회 돌봄, 복지관, 취약계층 지원 등 부산의 복지 이슈를 확인합니다.</p></div><a href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EC%82%B0%20%EC%82%AC%ED%9A%8C%EB%B3%B5%EC%A7%80%20%EC%A0%95%EC%B1%85" target="_blank" rel="noopener">뉴스 검색 →</a></div>
-            <div class="topic-card"><div><span class="tag">청년</span><h3>청년 일자리·주거</h3><p>부산 청년의 취업, 주거, 고립·은둔, 사회참여 관련 흐름을 살펴봅니다.</p></div><a href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EC%82%B0%20%EC%B2%AD%EB%85%84%20%EC%A3%BC%EA%B1%B0%20%EC%9D%BC%EC%9E%90%EB%A6%AC" target="_blank" rel="noopener">뉴스 검색 →</a></div>
-            <div class="topic-card"><div><span class="tag">고령화</span><h3>노인복지와 돌봄</h3><p>초고령사회, 노인돌봄, 지역 노인복지관 관련 이슈를 연결합니다.</p></div><a href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EC%82%B0%20%EB%85%B8%EC%9D%B8%EB%B3%B5%EC%A7%80%20%EB%8F%8C%EB%B4%84" target="_blank" rel="noopener">뉴스 검색 →</a></div>
-            <div class="topic-card"><div><span class="tag">지역사회</span><h3>부산 남구 이슈</h3><p>부경대가 위치한 남구의 지역사회, 대학가, 복지 현안을 확인합니다.</p></div><a href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EC%82%B0%20%EB%82%A8%EA%B5%AC%20%EC%9D%B4%EC%8A%88" target="_blank" rel="noopener">뉴스 검색 →</a></div>
-            <div class="topic-card"><div><span class="tag">문화</span><h3>부산 문화·관광</h3><p>지역문화, 축제, 관광 정책 등 부산의 생활권 이슈를 살펴봅니다.</p></div><a href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EC%82%B0%20%EB%AC%B8%ED%99%94%20%EC%B6%95%EC%A0%9C%20%EC%9D%B4%EC%8A%88" target="_blank" rel="noopener">뉴스 검색 →</a></div>
-            <div class="topic-card"><div><span class="tag">공공</span><h3>부산시 공식 소식</h3><p>부산광역시 보도자료와 공지사항을 통해 공식 정보를 확인합니다.</p></div><a href="https://www.busan.go.kr/news" target="_blank" rel="noopener">공식 페이지 →</a></div>
-          </div>
-        </div>
-      </article>
-
-      <article id="pknu" class="app-window">
-        <div class="window-titlebar">
-          <div class="traffic"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-          <div class="window-title">부경대 관련 뉴스 — 공식 소식 · 기사 검색</div>
-          <div class="window-actions">
-            <a class="mini-btn" href="https://www.pknu.ac.kr" target="_blank" rel="noopener">공식 홈페이지</a>
-            <a class="mini-btn" href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EA%B2%BD%EB%8C%80" target="_blank" rel="noopener">뉴스 검색</a>
-          </div>
-        </div>
-        <div class="window-body">
-          <div class="news-list">
-            <div class="news-item">
-              <div class="news-badge">PKNU</div>
-              <div><h3>국립부경대학교 공식 홈페이지</h3><p>대학 공지, 학사, 연구, 캠퍼스 소식을 확인할 수 있는 공식 홈페이지입니다.</p></div>
-              <a class="open-link" href="https://www.pknu.ac.kr" target="_blank" rel="noopener">열기</a>
-            </div>
-            <div class="news-item">
-              <div class="news-badge">NEWS</div>
-              <div><h3>부경대 관련 최신 뉴스 검색</h3><p>포털 뉴스 검색으로 부경대의 연구, 입학, 행사, 지역협력 관련 소식을 확인합니다.</p></div>
-              <a class="open-link" href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EA%B2%BD%EB%8C%80" target="_blank" rel="noopener">검색</a>
-            </div>
-            <div class="news-item">
-              <div class="news-badge">SW</div>
-              <div><h3>사회복지학 관련 학술 검색</h3><p>상단 검색창에 주제를 입력하면 Google Scholar에서 논문을 검색합니다.</p></div>
-              <a class="open-link" href="https://scholar.google.com/scholar?q=%EC%82%AC%ED%9A%8C%EB%B3%B5%EC%A7%80%ED%95%99%20%EC%8B%A4%EB%AC%B4%EC%97%AD%EB%9F%89" target="_blank" rel="noopener">학술검색</a>
-            </div>
-            <div class="news-item">
-              <div class="news-badge">BUSAN</div>
-              <div><h3>부산 지역대학·지역사회 연계</h3><p>부경대와 부산 지역사회가 연결되는 봉사, 산학협력, 지역혁신 소식을 확인합니다.</p></div>
-              <a class="open-link" href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EA%B2%BD%EB%8C%80%20%EC%A7%80%EC%97%AD%EC%82%AC%ED%9A%8C%20%ED%98%91%EB%A0%A5" target="_blank" rel="noopener">검색</a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article id="welfare" class="app-window">
-        <div class="window-titlebar">
-          <div class="traffic"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-          <div class="window-title">사회복지 관련 통계 — KOSIS · e-나라지표 · 복지로</div>
-          <div class="window-actions">
-            <a class="mini-btn" href="https://kosis.kr" target="_blank" rel="noopener">KOSIS</a>
-            <a class="mini-btn" href="https://www.bokjiro.go.kr" target="_blank" rel="noopener">복지로</a>
-          </div>
-        </div>
-        <div class="window-body">
-          <div class="stat-grid">
-            <div class="stat-box"><small>통계 주제</small><strong>복지</strong><span>복지서비스·급여·대상자</span></div>
-            <div class="stat-box"><small>지역 단위</small><strong>부산</strong><span>지역사회 현황 분석</span></div>
-            <div class="stat-box"><small>대상 집단</small><strong>청년</strong><span>고립·고용·주거</span></div>
-            <div class="stat-box"><small>대상 집단</small><strong>노인</strong><span>돌봄·빈곤·건강</span></div>
-          </div>
-
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>자료명</th>
-                  <th>확인 가능한 내용</th>
-                  <th>바로가기</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>KOSIS 국가통계포털</td>
-                  <td>인구, 가구, 고용, 복지, 지역별 통계 검색</td>
-                  <td><a class="open-link" href="https://kosis.kr" target="_blank" rel="noopener">열기</a></td>
-                </tr>
-                <tr>
-                  <td>e-나라지표</td>
-                  <td>정부 주요 지표, 복지·고용·사회 관련 지표</td>
-                  <td><a class="open-link" href="https://www.index.go.kr" target="_blank" rel="noopener">열기</a></td>
-                </tr>
-                <tr>
-                  <td>복지로</td>
-                  <td>복지서비스, 복지정책, 복지정보 검색</td>
-                  <td><a class="open-link" href="https://www.bokjiro.go.kr" target="_blank" rel="noopener">열기</a></td>
-                </tr>
-                <tr>
-                  <td>보건복지부 통계</td>
-                  <td>보건·복지 정책 자료와 통계자료</td>
-                  <td><a class="open-link" href="https://www.mohw.go.kr" target="_blank" rel="noopener">열기</a></td>
-                </tr>
-                <tr>
-                  <td>부산광역시 통계</td>
-                  <td>부산 지역 인구, 경제, 복지, 생활 통계</td>
-                  <td><a class="open-link" href="https://www.busan.go.kr/stat/index" target="_blank" rel="noopener">열기</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </article>
-
-      <div class="footer-dock" aria-label="빠른 실행 독">
-        <button class="dock-btn active" data-target="home" title="홈">⌂</button>
-        <button class="dock-btn" data-target="weather" title="날씨">☁</button>
-        <button class="dock-btn" data-target="busan" title="부산 이슈">🏙</button>
-        <button class="dock-btn" data-target="pknu" title="부경대 뉴스">🎓</button>
-        <button class="dock-btn" data-target="welfare" title="복지 데이터">📊</button>
       </div>
-    </section>
-  </main>
+
+      <section class="panel active" id="panel-home">
+        <div class="home-layout">
+          <div>
+            <span class="tag">🌸 Social Welfare Practice Lab</span>
+            <h2 class="headline">부경대 <em>사회복지학</em><br />실무역량</h2>
+            <p class="lead">
+              부산 지역 이슈, 부경대 관련 뉴스, 사회복지 통계, 부산 날씨를 한 화면에서 확인할 수 있는
+              실무형 정보 홈페이지입니다. 메인 화면에는 용량을 줄인 프로필 이미지를 작게 넣어 포트폴리오 느낌을 살렸습니다.
+            </p>
+            <div class="quick">
+              <div class="quick-card" data-panel="weather"><strong>01</strong><span>부산 기준<br />실시간 날씨</span></div>
+              <div class="quick-card" data-panel="busan"><strong>02</strong><span>부산 지역<br />핵심 이슈</span></div>
+              <div class="quick-card" data-panel="pknu"><strong>03</strong><span>부경대 관련<br />뉴스 탐색</span></div>
+              <div class="quick-card" data-panel="welfare"><strong>04</strong><span>사회복지<br />통계 링크</span></div>
+            </div>
+          </div>
+          <aside class="profile-card">
+            <img src="data:image/webp;base64,UklGRuQLAABXRUJQVlA4INgLAACQOwCdASq0ALQAPnk6mUgko6KhJlW7GJAPCWVu4XKQ79DcImfQL7xF9r0e7cTndPRrvO8rH8qvEuGd9of4v9u5D+AF7H3+K7Tw39by9U48bzP2APzB6NOid6b/Zb4D/1y32wwtbO+RXevXLffIC/ddt3nRzbuCDb1OIRPnSWNKGhLk9Fw/PYInJF5NxI5l07qlD1wQOsAXjCdofcS1EArqSPWCT0SzPJ/m8JnJmFiEHVyqNVA4Mq3wRhfLIdHteg/SKhMhGOOGjpQMc1QxGajwpP/Uqm1UXFFmm+P2bIf8sYoMHSy4lY4xrzFzhjoTXe3gDIoAm8CWcfOyLDhthRZFDhGiRiR0TxXxn9Bwx305R3lBbTkSWaZZQF4SvLGszyV0cQI3GNkt0zd3HkWHAq1Fj8nOgdEo98icGV3ZI3leU/YDc2bh9lJ14Np8AAm6++4/vj0A8Qdx+RcGc3G5TVBk1/dT1j1/h2NHOpPasmv8bTmje7BEbNISlfPelFLkqFKuW+Msgtm03TbmCIOIZiepoQ9wqSrVePJS/6xHutUv57oq/1Uz5S8/x7dBBdJRKm8wk6jHovWnk6iKPJ9z606xwOigmsdNZGE561OjGWML+xk5mB1wW5lAoHAMPsJkgtvjtuCcAAD+/2CAyWS/etMYt95zWqly1PgOL9C8/vloLce3TK4pFmVMmTGge8+ZgDItEVJhAWVKH5TFg63knd6zEAKkpyjlLGM/3tpDba3R7f2uNxsW/rkvCyf7ovoIf4794DTlxVCiLKUfAoEZZ/rSJpeWid5LeXucr23r630YHWqMi+586MZU+AQcgLoXxGYDBQt8aeFwP193iQMwFaq5BavLy0X43gMSgsSr2ZQ+zlrjG2r1mWbtMI69ddRky74H90Zm5RM6hYOQr7yZmsUMaJ6+Ff8Y9jMdl/JvbexpyedsH7i/358ad3flj8kjdaO+B5PC8LFXWpc2pyHcyUhFeX3e79G2/aeN4zmHOKd/rozy+o424K8Tycq0DHCvjkfPXut3xkLr9GqRC31Qm9/DxfJhmzLQdEmox6OMo/joejR4rR3WanS/HgFfOYJPPfzjYyuFYyplD2h6ROlBJYFMJQMnlAAgzFfUA8CzDdwupyKCkdFrzcG+bGm7nq8PmkbKk57bb42UL7hXGZzPPs1siWOmzfkQ1bbTslEOxlOVfwtiodHxQ000ieqJwFyZeVKC4QBr+hRvE64RIwMpRP2CJeSOytRcjmMlzciXMrxWkiWt2O+NJKTmxqBvN/rGGU01DnKVluM+P/0xzXIfJxhC6HAcYy6ka8GzWYux9QOOykv0nphO7hObOLF5yVspPZc0ZGOlT6/0Fbda9i/KADm8036XNZmtqlvb6AE+JrGY19R6TQK0zCGer3k5SkIoWcq+pFEyO4XkReCeQgzQdFQTtZ3Sk9TIO+Gx/wEY4xVnkExyTiky01vOR5lGtjh5JPofCocPRHkajSrhJAjqbYRfybt8DGttUA06dZ+bzav55hKh7HYy9t58Nv9CXBGPuQo189OyQoI2zg3g5MmN6bNS5Sw/x1t4ep5dPkH1IZwgezQTXRg2qZkq4Eegw8Ym4wHbk2cc3xDrJbyToWloVDk/83LVFL6WlAvMjKOC7Q+Rap1XRTmPTvM1MWFa6XbRQxClqls2lZBRC1EbbC+NVikYqbCAo4gqWy/q0VgEbE9uH4ErgAIe+2wLduw2lU11bMGYl/SGv3/6WPPTXfiG/TiNCj0kyDIHG8celM1H7kvKYsHfZzrJNIH9lWm/niCBV1rhdBlYQRUuAbER0JqobLgZUTkLXPd0R6HyBUGfKISZVznW4cEgvP6kIIZ7oLun0IJUAReS5t9c9kEo0wnJft20En3W3c2OVpYCKoYuTByZl9pfR+1PfU+9Tik6vH9nhh1dOVCkDCszJ0uuWYA7G9hks05I4cxeEVSHy2IpZHS5+kceCjtVmtUDg1ZSxeqOYR5jCMWHNgc85tXBArbfzW4denKgY5VZgWNJBbx7X77Md92/IA1NnbWz4Ls/QAWVQ3vfyjSgrH7eYndNSAv3hcYdcVkAbZ6YNVHe/MBMEZD8Ebd10Z4igy3lHum/eW0gfmwtu0Va+EAZBolzGb2QaY/HasEaywD5hqJnio5FAp4QVW6DiNFlsDb6WE/WOI/M2VqV/c+XmJOG1ueqkA8V4eqlhOZjunAmbvfHuzlFnE4LtZ4Zlf8WPF3BTzY/3R9QwlLSST/2dexKx1weBO6Jc1PM8YgHKbtP72DkZF/Ho2kN5zq/lTj8huwHxj66/EofeCo9IRib7YCUOCdmDP6g0E05+IXtUEYRvEmFpUtBaRdyQfS8xfUr8X5WuDvbMAJ7jfg+x+j0DwOV4G/W5F7vlLLfSujRdb92EcUOVld1vfQQW75I94NBSgZsmNbKOuM2J+5NpSHw7qhSuTRiHDJPjkGzQzuSy0vEAwsBOkSponfQ/fzn0cG7oe4hRzG937G86iHHmhEZasutj0CaOJPlaq9zr322S9s7mreXHyajTvGDeImtCW13t/FU+hYsdtGZUtqXKaYamgA0BEtuNDfsoZdnuYPN5FvgJZ7dSbyy4hjJQTkeOaptienOYaJJN9cxVED/I6RUs0iNvCaR0Zb/YeP/L4YeVrbfQW1FaKlvdwoQ3hFHDwWKDpv/mPH5fuejVjjXqbf+v3WfwkRzWL62VX9OHD54RzJ8qFpwu/TMt947VrUDmjtRE2OpCURIPJd/mmHuKcYmg7wtl84HXaeEmdyT8l7cQsBm5PW7bzV3V5Kc0gqAB9LXVcO1canoRnEXrJXrn9WbVkTDxEyM4V7Rr5sAuHHrLg9CtA2kW5WsdjLPoqOA8RwhtyH8/BOAysKOpwY10X/JzSBnM41k74qiwwT3A29XTWrUhlNHQv263B0q6WGOulnz5bJdQ60hWKbFzMnx2dMFHxJEk0TIkmalUdOoAgd2DWkxbwPe7XWGfLfUIHE92CwGgBCwvljmnHwJ9PRju0t59TCoa5Eo4349RNIqYh1hjbFVL4VeiMXoxoFKmjMqX2kmIuKhzshYk4Og47xhcVg3UmdENWJPs+3TLdw9DqPcgNgMT7tYzrdukRQKQGqJ/spHL56l1x+L+4aCO9iK2RDP+wsWcOQH2vTq0w413bOZ+zg8Hhyi9wwX8xX7JUEn4oWKt5GwVIbPSHeUKuRGJsus6ahfbxi367latWRIT9aMhmA7/K0z4ceF4Uvn5KltDgPJwqCvIVQm1x+kbg6w5q/qzG88qICMtb9+gAzto+33JR4fEr/s2w+L6Z/3jFHTfEayvLFtzIeo0CQIabR2VIldY+BkO9dll7q5+e2xt3jJZRqmlGSStXf2I7nPkEwCGl+GONVuu1Gnn81YPe/mn5oU9euWPQjbLmitCRKG/BYOhz8h4BdZUii0bS+vrR8aSJ6RscdUAXu5Qz9ogGKOhUQuviQ9BqiRjOfePq/CaZYB9lhqnXosChpvlubx6ubkjTzuobK5PJ/UdNnxGjMaWIdlAMcRxgNuXATaWy6wbrSRHVPcr7Ljv+37d69cUDpa8OA7+WCjYeBdttVGwr8yy955W1NIepvYOZFoBnt3gehKK9jBG19CgOgf7Nco/QW0oOrX72qIXCun/CNVtgors5QOPEFAyd2xaJI05rJKMHVDaH49cz1su184fNsts1g/TkOA1lMRcwRuJdAsIML+xHIBpNBwkSj5aUOeKFEvxHQsNx5eGsIr1cUu7t5Gac8+c9ZSIm/kXnYTG9KFE7TkRFOsU9Jyc4jzeGUB2Czd8BSbQx+r9N4a2hup+dc5VXr0lfvTJeBhXbJh0T6UoHzH4sRllQWNgdpCjJE8zGWdVUYE9xJiQBT+q7bcPqLz0jYD1aItSByH812/GRxceDWLNA/gfr0vF5nnptaOoWmSNO8nJMPyaWiFrEP7b4ulclImiaH24yqqNsMqApG6SHScVoD8Ey5y2kfnqni6VglHrkWXffkGRb7KyNvY/6EL+copO0mbkytUdDU7QxqAkmnxZXSohsYAAA==" alt="메인 프로필 이미지" />
+            <div>
+              <b>메인 프로필</b>
+              <span>이미지 용량을 줄여<br />index.html 안에 직접 삽입</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-weather">
+        <div class="city-buttons">
+          <button class="city active" data-city="busan">부산</button>
+          <button class="city" data-city="seoul">서울</button>
+          <button class="city" data-city="daegu">대구</button>
+        </div>
+        <div class="weather-box">
+          <div>
+            <div class="weather-temp" id="weatherTemp">--°</div>
+            <div class="weather-desc" id="weatherDesc">부산 날씨 정보를 불러오는 중입니다.</div>
+          </div>
+          <div class="weather-icon" id="weatherIcon">🌤️</div>
+        </div>
+        <div class="grid-2">
+          <a class="card" href="https://www.weather.go.kr" target="_blank" rel="noopener">
+            <small>기상청</small><h2>기상청 날씨 확인</h2><p>전국 예보와 특보, 생활기상 정보를 확인합니다.</p>
+          </a>
+          <a class="card" href="https://www.busan.go.kr" target="_blank" rel="noopener">
+            <small>부산</small><h2>부산시 정보와 연결</h2><p>지역 정책과 생활 정보를 함께 확인할 수 있습니다.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-busan">
+        <div class="list">
+          <a class="link-item" href="https://www.busan.go.kr/news" target="_blank" rel="noopener"><b>부산시 공식 뉴스</b><span>시정 소식, 지역 행사, 복지·청년 정책 정보를 확인합니다.</span></a>
+          <a class="link-item" href="https://search.naver.com/search.naver?query=%EB%B6%80%EC%82%B0+%EC%9D%B4%EC%8A%88" target="_blank" rel="noopener"><b>부산 실시간 이슈 검색</b><span>오늘 많이 검색되는 부산 지역 주요 이슈를 바로 탐색합니다.</span></a>
+          <a class="link-item" href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EC%82%B0+%EC%82%AC%ED%9A%8C%EB%B3%B5%EC%A7%80" target="_blank" rel="noopener"><b>부산 사회복지 뉴스</b><span>복지관, 청년, 노인, 1인 가구 등 지역 복지 관련 뉴스를 검색합니다.</span></a>
+          <a class="link-item" href="https://search.naver.com/search.naver?where=news&query=%EB%B6%80%EC%82%B0+%EC%B2%AD%EB%85%84%EC%A0%95%EC%B1%85" target="_blank" rel="noopener"><b>부산 청년정책 뉴스</b><span>청년 지원, 일자리, 주거, 사회참여 정책 흐름을 확인합니다.</span></a>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-pknu">
+        <div class="grid-2">
+          <a class="card" href="https://www.pknu.ac.kr/main" target="_blank" rel="noopener"><small>공식</small><h2>국립부경대학교 홈페이지</h2><p>학교 공지, 학사 안내, 대학 소식을 확인합니다.</p></a>
+          <a class="card" href="https://search.naver.com/search.naver?where=news&query=%EA%B5%AD%EB%A6%BD%EB%B6%80%EA%B2%BD%EB%8C%80%ED%95%99%EA%B5%90" target="_blank" rel="noopener"><small>뉴스</small><h2>부경대 관련 뉴스 검색</h2><p>언론에 보도된 부경대 주요 소식을 바로 검색합니다.</p></a>
+          <a class="card" href="https://scholar.google.com/scholar?q=%EA%B5%AD%EB%A6%BD%EB%B6%80%EA%B2%BD%EB%8C%80%ED%95%99%EA%B5%90+%EC%82%AC%ED%9A%8C%EB%B3%B5%EC%A7%80" target="_blank" rel="noopener"><small>연구</small><h2>부경대·사회복지 논문 검색</h2><p>지역복지, 청년복지, 실무역량 관련 연구를 탐색합니다.</p></a>
+          <a class="card" href="https://search.naver.com/search.naver?query=%EB%B6%80%EA%B2%BD%EB%8C%80+%EC%82%AC%ED%9A%8C%EB%B3%B5%EC%A7%80%ED%95%99" target="_blank" rel="noopener"><small>검색</small><h2>부경대 사회복지학 검색</h2><p>학과·수업·실무역량 관련 자료를 빠르게 찾습니다.</p></a>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-welfare">
+        <div class="list">
+          <a class="link-item" href="https://kosis.kr" target="_blank" rel="noopener"><b>KOSIS 국가통계포털</b><span>인구, 가구, 고용, 빈곤, 복지 관련 국가통계를 검색합니다.</span></a>
+          <a class="link-item" href="https://www.index.go.kr" target="_blank" rel="noopener"><b>e-나라지표</b><span>사회복지지출, 노인복지, 보건복지 지표를 확인합니다.</span></a>
+          <a class="link-item" href="https://www.mohw.go.kr" target="_blank" rel="noopener"><b>보건복지부 통계·자료</b><span>복지 정책, 보건의료, 사회서비스 관련 자료를 확인합니다.</span></a>
+          <a class="link-item" href="https://www.bokjiro.go.kr" target="_blank" rel="noopener"><b>복지로</b><span>복지서비스 정보와 제도별 지원 내용을 살펴봅니다.</span></a>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer-note">profile image embedded · no separate image upload required</div>
+  </div>
 
   <script>
-    const tabs = document.querySelectorAll('.tab');
-    const dockButtons = document.querySelectorAll('.dock-btn');
-    const windows = document.querySelectorAll('.app-window');
+    const titles = {
+      home: "main.exe — 부경대 사회복지학 실무역량",
+      weather: "weather.exe — 날씨 정보",
+      busan: "issue.exe — 부산의 이슈",
+      pknu: "news.exe — 부경대 관련 뉴스",
+      welfare: "data.exe — 사회복지 관련 통계"
+    };
 
-    function showWindow(target) {
-      windows.forEach(win => win.classList.toggle('active', win.id === target));
-      tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.target === target));
-      dockButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.target === target));
-    }
-
-    tabs.forEach(tab => tab.addEventListener('click', () => showWindow(tab.dataset.target)));
-    dockButtons.forEach(btn => btn.addEventListener('click', () => showWindow(btn.dataset.target)));
-
-    function updateClock() {
-      const now = new Date();
-      const hh = String(now.getHours()).padStart(2, '0');
-      const mm = String(now.getMinutes()).padStart(2, '0');
-      const ss = String(now.getSeconds()).padStart(2, '0');
-      const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
-      document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
-      document.getElementById('date').textContent = `${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일 (${weekdays[now.getDay()]})`;
-    }
-    updateClock();
-    setInterval(updateClock, 1000);
-
-    document.getElementById('searchInput').addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        const query = event.target.value.trim();
-        if (!query) return;
-        window.open(`https://scholar.google.com/scholar?q=${encodeURIComponent(query)}`, '_blank', 'noopener');
-      }
-    });
-
-    const cities = {
-      busan: { name: '부산광역시', lat: 35.1796, lon: 129.0756 },
-      daegu: { name: '대구광역시', lat: 35.8714, lon: 128.6014 },
-      seoul: { name: '서울특별시', lat: 37.5665, lon: 126.9780 }
+    const cityMap = {
+      busan: { name: "부산", lat: 35.1796, lon: 129.0756 },
+      seoul: { name: "서울", lat: 37.5665, lon: 126.9780 },
+      daegu: { name: "대구", lat: 35.8714, lon: 128.6014 }
     };
 
     const weatherCode = {
-      0: '맑음', 1: '대체로 맑음', 2: '부분적으로 흐림', 3: '흐림',
-      45: '안개', 48: '서리 안개', 51: '약한 이슬비', 53: '이슬비', 55: '강한 이슬비',
-      61: '약한 비', 63: '비', 65: '강한 비', 71: '약한 눈', 73: '눈', 75: '강한 눈',
-      80: '소나기', 81: '소나기', 82: '강한 소나기', 95: '뇌우'
+      0: ["맑음", "☀️"], 1: ["대체로 맑음", "🌤️"], 2: ["부분적으로 흐림", "⛅"], 3: ["흐림", "☁️"],
+      45: ["안개", "🌫️"], 48: ["서리 안개", "🌫️"], 51: ["약한 이슬비", "🌦️"], 53: ["이슬비", "🌦️"],
+      55: ["강한 이슬비", "🌧️"], 61: ["약한 비", "🌧️"], 63: ["비", "🌧️"], 65: ["강한 비", "🌧️"],
+      71: ["약한 눈", "🌨️"], 73: ["눈", "🌨️"], 75: ["강한 눈", "❄️"], 80: ["약한 소나기", "🌦️"],
+      81: ["소나기", "🌧️"], 82: ["강한 소나기", "⛈️"], 95: ["뇌우", "⛈️"]
     };
 
-    async function loadWeather(cityKey = 'busan') {
-      const city = cities[cityKey];
-      const status = document.getElementById('weatherStatus');
-      document.getElementById('weatherCity').textContent = city.name;
-      status.textContent = `${city.name} 날씨 데이터를 불러오는 중입니다.`;
+    function setPanel(name) {
+      document.querySelectorAll(".panel").forEach(panel => panel.classList.remove("active"));
+      document.getElementById("panel-" + name).classList.add("active");
+      document.querySelectorAll(".tab").forEach(tab => tab.classList.toggle("active", tab.dataset.panel === name));
+      document.getElementById("windowTitle").textContent = titles[name] || titles.home;
+      if (name === "weather") loadWeather("busan");
+    }
 
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul&forecast_days=5`;
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("clockTime").textContent = now.toLocaleTimeString("ko-KR", { hour12: false });
+      document.getElementById("clockDate").textContent = now.toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "short" });
+    }
 
+    async function loadWeather(cityKey) {
+      const city = cityMap[cityKey] || cityMap.busan;
+      document.querySelectorAll(".city").forEach(btn => btn.classList.toggle("active", btn.dataset.city === cityKey));
+      const temp = document.getElementById("weatherTemp");
+      const desc = document.getElementById("weatherDesc");
+      const icon = document.getElementById("weatherIcon");
+      temp.textContent = "--°";
+      desc.textContent = city.name + " 날씨 정보를 불러오는 중입니다.";
+      icon.textContent = "🌤️";
       try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=Asia%2FSeoul`;
         const res = await fetch(url);
-        if (!res.ok) throw new Error('weather fetch failed');
+        if (!res.ok) throw new Error("weather request failed");
         const data = await res.json();
         const current = data.current;
-
-        document.getElementById('weatherTemp').textContent = `${Math.round(current.temperature_2m)}°`;
-        document.getElementById('weatherDesc').textContent = weatherCode[current.weather_code] || '날씨 정보';
-        document.getElementById('feelsLike').textContent = `${Math.round(current.apparent_temperature)}°`;
-        document.getElementById('humidity').textContent = `${current.relative_humidity_2m}%`;
-        document.getElementById('rain').textContent = `${current.precipitation}mm`;
-        document.getElementById('wind').textContent = `${Math.round(current.wind_speed_10m)}km/h`;
-
-        const forecast = document.getElementById('forecast');
-        forecast.innerHTML = '';
-        data.daily.time.forEach((day, index) => {
-          const date = new Date(day);
-          const label = index === 0 ? '오늘' : `${date.getMonth()+1}/${date.getDate()}`;
-          forecast.insertAdjacentHTML('beforeend', `
-            <div class="day">
-              <b>${label}</b>
-              <span>최고 ${Math.round(data.daily.temperature_2m_max[index])}°</span><br />
-              <span>최저 ${Math.round(data.daily.temperature_2m_min[index])}°</span><br />
-              <span>강수 ${data.daily.precipitation_probability_max[index] ?? '-'}%</span>
-            </div>
-          `);
-        });
-        status.textContent = `업데이트 완료: ${new Date().toLocaleTimeString('ko-KR')} · 출처: Open-Meteo`;
-      } catch (error) {
-        document.getElementById('weatherTemp').textContent = '--°';
-        document.getElementById('weatherDesc').textContent = '날씨 연결 실패';
-        document.getElementById('feelsLike').textContent = '--°';
-        document.getElementById('humidity').textContent = '--%';
-        document.getElementById('rain').textContent = '--mm';
-        document.getElementById('wind').textContent = '--km/h';
-        document.getElementById('forecast').innerHTML = '<div class="day"><b>안내</b><span>잠시 후 다시 시도해주세요.</span></div>';
-        status.textContent = '날씨 API 연결이 제한되었습니다. 오른쪽의 기상청 또는 AccuWeather 버튼을 이용해주세요.';
+        const info = weatherCode[current.weather_code] || ["날씨 정보", "🌤️"];
+        temp.textContent = Math.round(current.temperature_2m) + "°";
+        icon.textContent = info[1];
+        desc.innerHTML = `<b>${city.name}</b> · ${info[0]}<br>습도 ${current.relative_humidity_2m}% · 풍속 ${current.wind_speed_10m}km/h<br>업데이트 ${String(current.time).replace("T", " ")}`;
+      } catch (e) {
+        temp.textContent = "정보 없음";
+        icon.textContent = "🌸";
+        desc.innerHTML = `<b>${city.name}</b> 날씨를 불러오지 못했습니다.<br>잠시 후 새로고침하거나 네트워크 연결을 확인해 주세요.`;
       }
     }
 
-    document.querySelectorAll('.pill[data-city]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.pill[data-city]').forEach(item => item.classList.remove('active'));
-        btn.classList.add('active');
-        loadWeather(btn.dataset.city);
-      });
+    document.querySelectorAll("[data-panel]").forEach(el => {
+      el.addEventListener("click", () => setPanel(el.dataset.panel));
+    });
+    document.querySelectorAll(".city").forEach(btn => {
+      btn.addEventListener("click", () => loadWeather(btn.dataset.city));
+    });
+    document.getElementById("scholarForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const q = document.getElementById("scholarInput").value.trim() || "사회복지 실무역량";
+      window.open("https://scholar.google.com/scholar?q=" + encodeURIComponent(q), "_blank", "noopener");
     });
 
-    loadWeather('busan');
+    updateClock();
+    setInterval(updateClock, 1000);
+    loadWeather("busan");
   </script>
 </body>
 </html>
